@@ -1,27 +1,35 @@
-import './product-list.scss';
+import './product-list.scss'; // first .css to improve performance
+// diferent library or resource import
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+// components import
 import { getSearchProducts } from '../../services/products';
 import CardElement from '../../components/card-elements/card-element';
+import { productListLabel } from './product-list.label'
+
 /**
+ * @author Ruth Rojas
  * @returns {*}
  * @constructor
  */
 const ProductList = () => {
+
+    const location = useLocation();
     const [productListRes, setProductList] = useState([])
 
+
     /**
-     * 
+     * call function services to get products
      */
     useEffect(() => {
-        getSearchProducts().then(data => {
+        const searchValue = location.pathname.split('=')[1];
+        getSearchProducts(searchValue).then(data => {
             setProductList(data);
         }).catch((error) => {
             console.error(error)
         });
-
     }, []);
 
-    console.log(productListRes);
     return (
         <React.Fragment>
             <div className='sections-productList-external'>
@@ -41,7 +49,7 @@ const ProductList = () => {
                         </div>
                         :
                         <div className="sections-productList-content-not-found">
-                            <h2> No se encontraron resultados </h2>
+                            <h2>{productListLabel.errorMessage}</h2>
 
                         </div>
                 }

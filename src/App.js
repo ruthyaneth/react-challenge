@@ -1,9 +1,14 @@
-import './App.css';
+import './App.css'; // first .css to improve performance
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom';
 import { routes } from './routes';
+
 /**
- *
+ * @author Ruth Rojas
  * @returns {*}
  * @constructor
  */

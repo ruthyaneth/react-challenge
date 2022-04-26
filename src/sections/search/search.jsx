@@ -1,29 +1,26 @@
-import './search.scss';
-import React, { useEffect, useState } from 'react';
+import './search.scss'; // first .css to improve performance
+import React, { useState } from 'react';
 import { useNavigate }  from 'react-router-dom';
 import iconMeLi from '../../assets/search-bar/Logo_ML.png';
 import iconSearch from '../../assets/search-bar/ic_Search.png';
 import { searchLabel } from './search.label';
 
 /**
+ * @author Ruth Rojas
  * @returns {*}
  * @constructor
  */
 const Search = () => {
 
     const navigate = useNavigate();
-    /**
-     * 
-     */
     const [valueInputSearch, setValueInputSearch] = useState('');
 
     /**
-     * 
+     * redirect product list page
      */
     const eventSearch = (event) => {
         event.preventDefault();
-        //console.log({valueInputSearch});
-        const url = `/items/search=`;
+        const url = `/items/search=${valueInputSearch}`;
         navigate(url);
     }
 

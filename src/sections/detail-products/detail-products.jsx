@@ -1,5 +1,6 @@
-import './detail-products.scss';
+import './detail-products.scss'; // first .css to improve performance
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getProductDetail, getProductDescription } from '../../services/products';
 import { detailLabel } from './detail-products.label';
 /**
@@ -7,40 +8,29 @@ import { detailLabel } from './detail-products.label';
  * @constructor
  */
 const ProductDetail = () => {
-
     //const and var sections
+    const location = useLocation();
     const [productInfo, setProductInfo] = useState({});
     const [productDescription, setProductDescription] = useState({});
 
-    // functions sections
-
-
-    //useEffect Sections 
+    //useEffect Sections, just before return improve performance
 
     /**
-     * 
+     * call service to load and render data
      */
     useEffect(() => {
-        getProductDetail().then(data => {
-            // console.log(data);
+        const searchValue = location.pathname.split('items/')[1];
+        getProductDetail(searchValue).then(data => {
             setProductInfo(data)
         }).catch((error) => {
             console.error(error)
         });
-
-        /**
-         * 
-         */
-        getProductDescription().then(data => {
-            // console.log(data);
+        getProductDescription(searchValue).then(data => {
             setProductDescription(data)
         }).catch((error) => {
             console.error(error)
         });
     }, []);
-
-   
-    //productInfo.pictures !== undefined ? console.log(productInfo.pictures[0].secure_url) : console.log(productInfo.pictures);
 
     let image = productInfo.pictures !== undefined ? productInfo.pictures[0].secure_url : '';
     return (
@@ -55,8 +45,8 @@ const ProductDetail = () => {
                                 </div>
                                 <div className='sections-detail-products-info'>
                                     <p className='sections-detail-products-info-text'>
-                                        <span>{productInfo.condition==='new'
-                                        ? detailLabel.new : detailLabel.used}</span>
+                                        <span>{productInfo.condition === 'new'
+                                            ? detailLabel.new : detailLabel.used}</span>
                                         -
                                         <span> {productInfo.sold_quantity} {detailLabel.sold}</span>
                                     </p>
@@ -67,12 +57,15 @@ const ProductDetail = () => {
 
                             </div>
                             <div className='sections-detail-products-description'>
+                                <h3 className='sections-detail-products-description-title'>{detailLabel.productDescription}</h3>
+                                <p>
+                                    {productDescription.plain_text}
+                                </p>
                             </div>
                         </div>
                     </div> :
                     <div className="sections-productList-content-not-found">
                         <h2> {detailLabel.errorMesage} </h2>
-
                     </div>
             }
         </React.Fragment>

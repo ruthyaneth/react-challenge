@@ -1,22 +1,21 @@
-import './card-element.scss'
+import './card-element.scss' // first .css to improve performance
 import React from 'react';
 import { useNavigate }  from 'react-router-dom';
 import iconDelivey from '../../assets/card-elements/ic_shipping.png';
 
-const CardElement = ({ id, title, thumbnail, price, shipping, address, }) => {
+const CardElement = ({ id, title, thumbnail, price, shipping, address }) => {
 
-    /**
-     * Const
-     */
+    //const and var section
     const navigate = useNavigate();
 
+    // functions sections
     /**
-     * Functions
+     * 
      * @param {*} id 
+     * navigate to detail product page
      */
     const handleClick = (id) => {
-        console.log(id)
-        const url = `/items/:id`;
+        const url = `/items/${id}`;
         navigate(url);
     }
 
@@ -32,4 +31,4 @@ const CardElement = ({ id, title, thumbnail, price, shipping, address, }) => {
     )
 }
 
-export default CardElement
+export default CardElement;

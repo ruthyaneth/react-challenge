@@ -17,9 +17,7 @@
     
 }
 .sections-detail-products-top {
-    
     display: flex;
-
 }
 .sections-detail-products-image-sec {
     background-color: #fff;
@@ -86,5 +84,12 @@ p {
     text-align: center;
 }
 .sections-detail-products-description {
+    margin: 24px;
+   
+}
+.sections-detail-products-description-title {
 
+    font-size: 24px;
+    padding-bottom: 24px 0 0;
+    color: rgba(29, 28, 28, 0.9);
 }

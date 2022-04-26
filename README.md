@@ -1,3 +1,11 @@
+Hi! 
+
+Please access the views as follows:
+
+    [`/`]:  Search Box,
+    [`items/search=:q`]: Search Results,
+    [`items/:id`]: Product Detail
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

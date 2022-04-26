@@ -1,13 +1,16 @@
 import axios from 'axios';
 
-const URL = 'https://api.mercadolibre.com/sites/MLA/search?q=​:';
+const SEARCH_URL = 'https://api.mercadolibre.com/sites/MLA/search?q=​:';
+const ITEM_URL = 'https://api.mercadolibre.com/items/';
 
 /**
  * 
+ * @param {*} paramSearch 
  * @returns 
+ * get the products that match the search parameter
  */
-export const getSearchProducts = () => {
-    return axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=​Apple ipod`)
+export const getSearchProducts = (paramSearch) => {
+    return axios.get(`${SEARCH_URL}${paramSearch}`)
         .then(({ data: item }) => {
             return item.results
         }).catch((err) => {
@@ -19,30 +22,28 @@ export const getSearchProducts = () => {
  * 
  * @param {*} id 
  * @returns 
+ * get the information of a specific product
  */
 export const getProductDetail = (id) => {
-    return axios.get(`https://api.mercadolibre.com/items/MLA1132158644`)
-    .then(({ data: item }) => {
-       // console.log("Detail", item)
-        return item
-    }).catch((err) => {
-        console.error(err);
-    });
-
+    return axios.get(`${ITEM_URL}${id}`)
+        .then(({ data: item }) => {
+            return item
+        }).catch((err) => {
+            console.error(err);
+        });
 }
 
 /**
  * 
  * @param {*} id 
  * @returns 
+ * get the detail text a product product
  */
 export const getProductDescription = (id) => {
-    return axios.get(`https://api.mercadolibre.com/items/MLA1132158644/description`)
-    .then(({ data: item }) => {
-        //console.log("description", item)
-        return item
-    }).catch((err) => {
-        console.error(err);
-    });
-
+    return axios.get(`${ITEM_URL}${id}/description`)
+        .then(({ data: item }) => {
+            return item
+        }).catch((err) => {
+            console.error(err);
+        });
 }

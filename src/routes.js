@@ -4,8 +4,8 @@ import ProductDetail from './sections/detail-products/detail-products';
 
 const pathRoutes = () => ({
 	[`/`]: {component: Search},
-    [`/items/search=`]: {component: ProductList},
-    [`/items/:id`]: {component: ProductDetail}
+    [`items/search=:q`]: {component: ProductList},
+    [`items/:id`]: {component: ProductDetail}
 });
 
 export {
