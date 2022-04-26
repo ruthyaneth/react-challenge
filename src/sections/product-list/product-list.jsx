@@ -36,7 +36,6 @@ const ProductList = () => {
                 {
                     productListRes?.length > 0 ?
                         <div className="">
-                            <h1>ruta</h1>
                             <div className='sections-productList-content'>
                                 {
                                     productListRes
